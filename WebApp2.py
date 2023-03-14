@@ -116,7 +116,7 @@ if Lasso:
     Y_Lin = 0
     for count, value in enumerate(Coeff_Lasso):
         Y_Lin += value* X_Lin**count
-    plt.plot(X_Lin,Y_Lin+Lasso_Object.intercept_,label='L1 Penatly (Lasso)',color='green',linestyle = '-.',linewidth=3,alpha=0.5)  
+    plt.plot(X_Lin,Y_Lin+Lasso_Object.intercept_,label='L1 Penalty (Lasso)',color='green',linestyle = '-.',linewidth=3,alpha=0.5)  
 ####################################################################################################################################################################    
 Ridge = st.sidebar.checkbox('Using Ridge?')
 if Ridge:
@@ -127,7 +127,7 @@ if Ridge:
     Y_Lin = 0
     for count, value in enumerate(Coeff_Ridge[0]):
         Y_Lin += value* X_Lin**count
-    plt.plot(X_Lin,Y_Lin+Ridge_Object.intercept_,label='L2 Penatly (Ridge)',color='red',linestyle = 'dashed',linewidth=3,alpha=0.5)     
+    plt.plot(X_Lin,Y_Lin+Ridge_Object.intercept_,label='L2 Penalty (Ridge)',color='red',linestyle = 'dashed',linewidth=3,alpha=0.5)     
 ####################################################################################################################################################################
 Elastic_Net = st.sidebar.checkbox('Using Elastic Net?')
 if Elastic_Net:
@@ -139,7 +139,7 @@ if Elastic_Net:
     Y_Lin = 0
     for count, value in enumerate(Coeff_ElasticNet):
         Y_Lin += value* X_Lin**count
-    plt.plot(X_Lin,Y_Lin+ElasticNet_Object.intercept_,label='L1+L2 Penatly (ElasticNet)',color='orange',linestyle = '--',linewidth=3,alpha=0.5)
+    plt.plot(X_Lin,Y_Lin+ElasticNet_Object.intercept_,label='L1+L2 Penalty (ElasticNet)',color='orange',linestyle = '--',linewidth=3,alpha=0.5)
 ####################################################################################################################################################################   
 plt.xlabel("X",fontsize=25)
 plt.ylabel("y",fontsize=25)
