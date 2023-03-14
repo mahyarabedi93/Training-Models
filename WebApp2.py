@@ -73,18 +73,18 @@ cols[2].image("https://scikit-learn.org/stable/_images/sphx_glr_plot_lasso_lars_
 ####################################################################################################################################################################
 st.markdown('<p class="font_text"> Continuing the last ICA, now we investigate the importance of regularization for fitting a polynomial.</p>', unsafe_allow_html=True)
 ####################################################################################################################################################################
-Dataset_Name = st.sidebar.selectbox('Select your dataset',('Fake Linear Sin', 'Fake Nonlinear Sin', 'Fake Sinh', 'Fake Exp', 'Fake Nonlinear'),index = 4)
+Dataset_Name = st.sidebar.selectbox('Select your dataset',('Sin(X)', 'X*Sin(X)', 'Sinh(X)', 'Exp(X)', 'X^N'),index = 4)
 np.random.seed(10)
 Data_Numbers = st.sidebar.slider('Size of fake data:', 5, 200, value=30)
 X = np.random.uniform(0, 20,Data_Numbers).reshape(-1,1)
 Noise = np.random.uniform(-1, 1,Data_Numbers).reshape(-1,1)
-if Dataset_Name == 'Fake Linear Sin':
+if Dataset_Name == 'Sin(X)':
     y=5*np.sin(X/2)+0.5*Noise
-elif Dataset_Name == 'Fake Nonlinear Sin':
+elif Dataset_Name == 'X*Sin(X)':
     y=X*np.sin(X/2)+0.5*Noise
-elif Dataset_Name == 'Fake Sinh':
+elif Dataset_Name == 'Sinh(X)':
     y=np.sinh(X)+Noise
-elif Dataset_Name == 'Fake Exp':
+elif Dataset_Name == 'Exp(X)':
     y=2*np.exp(X)+Noise
 else:
     y=3.6*X**0.5+Noise
@@ -109,7 +109,7 @@ plt.plot(X_Lin,Y_Lin+Linear_Object.intercept_,label='No Penalty',color='magenta'
 ####################################################################################################################################################################
 Lasso = st.sidebar.checkbox('Add Lasso to Plot?')
 if Lasso:
-    Alpha_Lasso = st.sidebar.number_input('L1 penalty constant for Lasso', min_value=0.0, max_value=10000.0,step=0.01, value=0.1,format='%f')
+    Alpha_Lasso = st.sidebar.number_input('L1 penalty constant for Lasso', min_value=0.0, max_value=100000000.0,step=0.01, value=0.1,format='%f')
     Lasso_Object = linear_model.Lasso(fit_intercept=True, alpha=Alpha_Lasso,max_iter=10000000)
     Lasso_Object.fit(X_Train,y)
     Coeff_Lasso = Lasso_Object.coef_
@@ -120,7 +120,7 @@ if Lasso:
 ####################################################################################################################################################################    
 Ridge = st.sidebar.checkbox('Add Ridge to Plot?')
 if Ridge:
-    Alpha_Ridge = st.sidebar.number_input('L2 penalty constant for Ridge:', min_value=0.0, max_value=10000.0,step=0.01, value=0.1,format='%f')
+    Alpha_Ridge = st.sidebar.number_input('L2 penalty constant for Ridge:', min_value=0.0, max_value=100000000.0,step=0.01, value=0.1,format='%f')
     Ridge_Object = linear_model.Ridge(fit_intercept=True, alpha=Alpha_Ridge,max_iter=10000000)
     Ridge_Object.fit(X_Train,y)
     Coeff_Ridge = Ridge_Object.coef_
@@ -131,7 +131,7 @@ if Ridge:
 ####################################################################################################################################################################
 Elastic_Net = st.sidebar.checkbox('Add ElasticNet to Plot?')
 if Elastic_Net:
-    Alpha_Elastic_Net = st.sidebar.number_input('Constant for Elastic Net Penalty regression:', min_value=0.0, max_value=10000.0,step=0.01, value=0.1,format='%f')
+    Alpha_Elastic_Net = st.sidebar.number_input('Constant for Elastic Net Penalty regression:', min_value=0.0, max_value=100000000.0,step=0.01, value=0.1,format='%f')
     L1_Ratio_Elastic_Net = st.sidebar.number_input('Value for Elastic Net mixing parameter for penalties:', min_value=0.0, max_value=1.0,step=0.01, value=0.5,format='%f')
     ElasticNet_Object = linear_model.ElasticNet(fit_intercept=True, alpha=Alpha_Elastic_Net, l1_ratio=L1_Ratio_Elastic_Net,max_iter=10000000)
     ElasticNet_Object.fit(X_Train,y)
