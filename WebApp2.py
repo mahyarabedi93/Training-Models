@@ -107,9 +107,9 @@ for count, value in enumerate(Coeff_Lin[0]):
     Y_Lin += value* X_Lin**count
 plt.plot(X_Lin,Y_Lin+Linear_Object.intercept_,label='No Penalty',color='magenta',linestyle = 'solid',linewidth=3,alpha=0.5)    
 ####################################################################################################################################################################
-Lasso = st.sidebar.checkbox('Using Lasso?')
+Lasso = st.sidebar.checkbox('Add Lasso to Plot?')
 if Lasso:
-    Alpha_Lasso = st.sidebar.number_input('L1 penalty constant for Lasso', min_value=0.0, max_value=100.0,step=0.01, value=0.1,format='%f')
+    Alpha_Lasso = st.sidebar.number_input('L1 penalty constant for Lasso', min_value=0.0, max_value=10000.0,step=0.01, value=0.1,format='%f')
     Lasso_Object = linear_model.Lasso(fit_intercept=True, alpha=Alpha_Lasso,max_iter=10000000)
     Lasso_Object.fit(X_Train,y)
     Coeff_Lasso = Lasso_Object.coef_
@@ -118,9 +118,9 @@ if Lasso:
         Y_Lin += value* X_Lin**count
     plt.plot(X_Lin,Y_Lin+Lasso_Object.intercept_,label='L1 Penalty (Lasso)',color='green',linestyle = '-.',linewidth=3,alpha=0.5)  
 ####################################################################################################################################################################    
-Ridge = st.sidebar.checkbox('Using Ridge?')
+Ridge = st.sidebar.checkbox('Add Ridge to Plot?')
 if Ridge:
-    Alpha_Ridge = st.sidebar.number_input('L2 penalty constant for Ridge:', min_value=0.0, max_value=100.0,step=0.01, value=0.1,format='%f')
+    Alpha_Ridge = st.sidebar.number_input('L2 penalty constant for Ridge:', min_value=0.0, max_value=10000.0,step=0.01, value=0.1,format='%f')
     Ridge_Object = linear_model.Ridge(fit_intercept=True, alpha=Alpha_Ridge,max_iter=10000000)
     Ridge_Object.fit(X_Train,y)
     Coeff_Ridge = Ridge_Object.coef_
@@ -129,9 +129,9 @@ if Ridge:
         Y_Lin += value* X_Lin**count
     plt.plot(X_Lin,Y_Lin+Ridge_Object.intercept_,label='L2 Penalty (Ridge)',color='red',linestyle = 'dashed',linewidth=3,alpha=0.5)     
 ####################################################################################################################################################################
-Elastic_Net = st.sidebar.checkbox('Using Elastic Net?')
+Elastic_Net = st.sidebar.checkbox('Add ElasticNet to Plot?')
 if Elastic_Net:
-    Alpha_Elastic_Net = st.sidebar.number_input('Constant for Elastic Net Penalty regression:', min_value=0.0, max_value=100.0,step=0.01, value=0.1,format='%f')
+    Alpha_Elastic_Net = st.sidebar.number_input('Constant for Elastic Net Penalty regression:', min_value=0.0, max_value=10000.0,step=0.01, value=0.1,format='%f')
     L1_Ratio_Elastic_Net = st.sidebar.number_input('Value for Elastic Net mixing parameter for penalties:', min_value=0.0, max_value=1.0,step=0.01, value=0.5,format='%f')
     ElasticNet_Object = linear_model.ElasticNet(fit_intercept=True, alpha=Alpha_Elastic_Net, l1_ratio=L1_Ratio_Elastic_Net,max_iter=10000000)
     ElasticNet_Object.fit(X_Train,y)
